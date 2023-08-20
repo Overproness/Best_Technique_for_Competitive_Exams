@@ -1,62 +1,73 @@
-// Okay so here is the scenario. There are two children A and B. Both are attempting a competitive exam named ECAT. ECAT has 400 marks in total, with 100 questions. Each question is a multiple choice question, with a total of 4 choices, out of which 1 is correct. If marked correctly, each question gets you four marks, leaving it will cost you nothing extra, while marking it incorrectly costs you 1 marks in negative. For example you attempted 74 questions out of which 2 are wrong. So, your marks are        72*4 - 2*1 = 286. (Which is btw what happened with me.). The student didn't attempt 26 questions because of doubt.
-// We will be testing if it is better to leave the doubtful questions or to select a random option. 
-// Our approach to test this would be to generate a random number between the range 1-4 twice, and if they match we will consider that the student who selected randomly got the answer right. 
-// We will consider that both the students A and B know the first 72 questions correctly and are doubtful in the rest. This is where their approaches differ, and this is what we're gonna calculate. A uses the save approach while B uses the random approach. 
-
+// Define the number of questions that the student knows correctly
 const correctlyKnownQuestions = 72
 
-
+// Function to simulate the "save" approach
 const saveApproach = () => {
-    const correct = 0
-    const wrong = 0
+    const correct = 0// Counter for correct answers
+    let wrong = 0;   // Counter for wrong answers
+    
+    // Return the correct and wrong counters as an object
     return{
         correct,
         wrong
     }
 }
+
+// Function to simulate the "random" approach
 const RandomPicked = () => {
     let rand1
     let rand2
-    let correct = 0
+    let correct = 0; // Counter for correct answers
+
+    // Simulate selecting random options for 20 questions
     for (let index = 0; index < 20; index++) {
-        rand1 = Math.floor(Math.random() * 4)
-        rand2 = Math.floor(Math.random() * 4)
+        rand1 = Math.floor(Math.random() * 4)// Random option 1
+        rand2 = Math.floor(Math.random() * 4); // Random option 2
+        
+        // If the random options match, consider it as a correct answer
         if(rand1===rand2){
             correct = correct + 1
         }
     }
-    const wrong = 20 -correct
+    const wrong = 20 -correct // Calculate the wrong answers
+    // Return the correct and wrong counters as an object
     return{
         wrong,
         correct
     }
 }
 
+// Function to calculate the total marks based on the approach
 const result = (obj) => {
+    // Calculate the total marks using the formula provided
     const totalMarks = correctlyKnownQuestions * 4 + obj.correct *4 - obj.wrong*1
     return totalMarks
 }
 
+// Function to perform the testing and comparison
 const testing = () => {
 
-
-let A =0
-    let B =0
+    let A =0// Counter for approach A winning
+    let B = 0; // Counter for approach B winning
     let resultOfA 
     let resultOfB
 
+    // Simulate the testing process for a large number of iterations
 for (let index = 0; index < 10000; index++) {
-    resultOfA = result(saveApproach())
-    resultOfB = result(RandomPicked())
+    resultOfA = result(saveApproach())// Get total marks for approach A
+    resultOfB = result(RandomPicked()); // Get total marks for approach B
+
+    // Compare the total marks and update counters accordingly
     
     if(resultOfA>resultOfB){
-        A = A+1
-    }
-    else{
-        B = B+1
+        A = A+1 // Approach A wins
+    } else {
+        B = B + 1; // Approach B wins
     }
 }
 console.log({A, B});
+
+// Determine which approach has more wins and provide the conclusion
 if(A>B){
     console.log('Doubtful Questions should be left. ');
 }
@@ -64,4 +75,6 @@ else{
     console.log('Tukka is the best. ');
 }
 }
+
+// Call the testing function to perform the simulation and comparison
 testing()
