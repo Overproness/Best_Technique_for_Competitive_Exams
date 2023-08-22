@@ -1,3 +1,18 @@
+const crypto = require('crypto')
+
+// Generate a random buffer of specified length
+const generateRandomBytes = (length) => {
+  return crypto.randomBytes(length)
+}
+
+// Generate a random integer within a range (min inclusive, max exclusive)
+const generateRandomInt = (min, max) => {
+  const range = max - min
+  const randomBytes = generateRandomBytes(4) // Using 4 bytes for 32-bit integer
+  const randomValue = randomBytes.readUInt32LE(0)
+  return Math.floor((randomValue / 0xffffffff) * range) + min
+}
+
 // Define the number of questions that the student knows correctly
 const correctlyKnownQuestions = 72
 
@@ -22,7 +37,7 @@ const RandomPicked = () => {
   // Simulate selecting random options for 20 questions
   for (let index = 0; index < 20; index++) {
     rand1 = Math.floor(Math.random() * 4) // Random option 1
-    rand2 = Math.floor(Math.random() * 4) // Random option 2
+    rand2 = generateRandomInt(0, 4) // Random option 2
 
     // If the random options match, consider it as a correct answer
     if (rand1 === rand2) {
@@ -65,7 +80,7 @@ const testing = () => {
       B = B + 1 // Approach B wins
     }
   }
-  console.log('Using JS random function')
+  console.log('Using Crypto Module`s random function')
   console.log({ A, B })
 
   // Determine which approach has more wins and provide the conclusion
