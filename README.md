@@ -34,4 +34,17 @@ We can speculate that when we choose to leave the question unanswered, zero mark
 
 #Contemplation: 
   Now if we take the 288 marks we get from only attempting the 72 questions as the base line and then calculate from that then the possible range of marks that we can get is: 395 - 260. If talking in terms of percentages, then the percentage increase/decease has a range of: 37.1% - 9.7%
-  Secondly let's try to take it as close to real life as we can. We can achieve this by using two different algorithms to calculate random numbers. And we will also implement a system which may randomly change the random calculated value to compansate for the human bias we talked about earlier. This code will be available in main.js. 
+  Secondly let's try to take it as close to real life as we can. We can achieve this by using two different algorithms to calculate random numbers. And we will also implement a system which may randomly change the random calculated value to compansate for the human bias we talked about earlier. This code will be available in UsingTwoAlgorithms.js. 
+  We used the JS 'crypto' module's random number generator, which is very different from JS's generic random number generator. 
+  After running the code here are the results:
+  Using Crypto Module`s random function
+  
+                                                                             { A: 2223, B: 7777 }
+                                                                              Guess is the best. 
+
+ As we can see the difference is not that great.
+
+ **#How to generate these results in real life: **
+  N.B. The chance of getting higher marks than the base line are 78% and the range of marks in the positive is greater than that in the negative that is why we are considering to do this in real life exams. 
+
+  Take a pencil, make sure its not round meaning it has distinct edges preferably like [this]([url](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa2xczUICj_CK0zL8ftMlPgOFmZj8B4fU9Cg&usqp=CAU)https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa2xczUICj_CK0zL8ftMlPgOFmZj8B4fU9Cg&usqp=CAU), and one with four sides. Mark a number like 1, 2, 3, 4 on each of these sides. Roll the pencil and hope your random algorithm matches, with the examiners. 
